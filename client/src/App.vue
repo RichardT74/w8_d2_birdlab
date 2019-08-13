@@ -2,11 +2,12 @@
   <div id="app">
     <sightings-form />
     <sightings-grid :sightings="sightings" />
+    <!-- above is expecting sightings from the prop -->
   </div>
 </template>
 
 <script>
-import SightingsForm from './components/SightingsForm';
+import SightingsForm from './components/SightingsForm'; //going out
 import SightingsGrid from './components/SightingsGrid';
 import { eventBus } from './main';
 
@@ -14,11 +15,11 @@ export default {
   name: 'app',
   data () {
     return {
-      sightings: []
+      sightings: []//from the fetch below, can now start rendering
     }
   },
   components: {
-    'sightings-form': SightingsForm,
+    'sightings-form': SightingsForm, //see stuff in above
     'sightings-grid': SightingsGrid
   },
   mounted(){

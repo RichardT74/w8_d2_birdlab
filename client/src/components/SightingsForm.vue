@@ -1,17 +1,20 @@
+<!-- html form
+v-model loop
+v for loop  -->
 <template lang="html">
-	<form id="sightings-form">
+	<form id="sightings-form" v-on:submit='addSighting'>
 		<h2>Add a Sighting</h2>
 		<div class="formWrap">
 			<label for="species">Species:</label>
-			<input type="text" id="species" v-model="species" />
+			<input type="text" id="species" v-on:submit="species" />
 		</div>
 		<div class="formWrap">
 			<label for="location">Location:</label>
-			<input type="text" id="location" v-model="location" />
+			<input type="text" id="location" v-on:submit="location" />
 		</div>
 		<div class="formWrap">
 			<label for="date">Date:</label>
-			<input type="date" id="date" v-model="date" />
+			<input type="date" id="date" v-on:submit="date" />
 		</div>
 
 		<input type="submit" value="Save" id="save"/>
@@ -31,8 +34,13 @@ export default {
 			species: '',
 			location: '',
 			date: null,
-		}
+		}// ADD DELETE TO EXPORT
+		// ADD ARRAY OF SightingS
 	},
+
+
+
+
 
 methods: {
 	addSighting(e){
@@ -40,10 +48,12 @@ methods: {
 		const sighting = {
 			species: this.species,
 			location: this.location,
-			date: this.date
+			date: this.date // this saves the info enter4ed from the form above and makes an object, whichis sends to  BirdsService to at the BirdsServicejs file uisng post bird
 		}
 
-BirdsService.PostBird(sighting)
+//  ADD MOUNTED PLUS GET AND DELETE
+
+BirdsService.postBird(sighting)
 .then(res => eventBus.$emit('bird-added', res))
 }
 }

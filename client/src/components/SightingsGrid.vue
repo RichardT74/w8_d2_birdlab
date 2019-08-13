@@ -3,7 +3,7 @@
 		<div class="sighting" v-for="(sighting, index) in sightings" :key='index' :value='sighting'>
 			<h2>{{ sighting.species }}</h2>
 			<p>{{ sighting.location }} on {{ sighting.date|format }}</p>
-
+<!-- this is all a looop for each sighting in sightings -->
 			<button type="button" class="delete-btn" v-on:click="deleteSighting">Delete Sighting</button>
 		</div>
 	</div>
@@ -13,9 +13,10 @@
 import { eventBus } from '../main';
 import BirdsService from '@/services/BirdsService.js';
 
+// below is tlabe for the component that will be used in app .vew []
 export default {
 	name: "sightings-grid",
-	props: ["sightings"],
+	props: ["sightings"], // exexping sightings from app.vue
 	filters: {
 		format(value){
 			return new Date(value).toLocaleString().substring(0, 10);
